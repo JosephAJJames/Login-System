@@ -28,15 +28,17 @@
     </style>
 </head>
 <body>
-    <form action="/check">
-        <div><label for="">Username</label><input type="text"></div>
-        <div><label for="">Password</label><input type="text"></div>
+    <form action="/check" method = "post">
+        <div><label for="">Username</label><input name="username" type="text"></div>
+        <div><label for="">Password</label><input name="password" type="text"></div>
         <button type = "submit">Submit</button>
         <a href="/create">Create Account</a>
-        <% if (build) { %>
-            <p>Incorrect Login Information</p>
-        <% } else { %>
-            <p>Logged in</p>
+        <% if (buildIt) { %>
+            <% if (build) { %>
+                <p>Incorrect Login Information</p>
+            <% } else { %>
+                <p>Logged in</p>
+            <% } %>
         <% } %>
     </form>
 </body>

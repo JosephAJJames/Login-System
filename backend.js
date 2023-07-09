@@ -1,22 +1,26 @@
 let db = []
 const express = require('express')
 const app = express()
+let build;
+let buildIt;
 
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
-    res.sendFile('C:/Users/JoeCe/OneDrive/Documents/Udemy Projects/log_in_system/homepage.html')
+    buildIt = false;
+    res.render('homepage.ejs', { build, buildIt })
 });
 
 app.post('/check', (req, res) => {
     const username = req.body.username
     const password = req.body.password
-    let build = true
+    build = true
+    buildIt = true
     if (db.some(([user, pass]) => user === username && pass === password)) {
         build = false
     }
-    res.render('homepage.ejs', { build })
+    res.render('homepage.ejs', { build, buildIt })
 })
 
 app.get('/create', (req, res) => {
